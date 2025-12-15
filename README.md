@@ -7,7 +7,9 @@ L’objectif est de construire un workflow scalable, distribué et reproductible
 ## Pipeline Big Data
 ### 1. Architecture du Projet
 <img width="1123" height="544" alt="Image" src="https://github.com/user-attachments/assets/d178d918-48e6-4ee6-94f7-577278a68b43" />
+
 ### 2. Installer tous les outils nécessaires
+
 L’ensemble des outils nécessaires au pipeline Big Data ont été installé et configuré à l’aide de **Docker** et d’un fichier **`docker-compose.yaml`**, ce qui permet de déployer un environnement homogène, reproductible et facile à maintenir.
 
 Les composants utilisés sont :
