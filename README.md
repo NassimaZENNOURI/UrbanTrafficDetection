@@ -105,8 +105,7 @@ Les données ont été collectées par le **Minnesota Department of Transportati
 
 Les performances et les prédictions sont sauvegardées dans **Hive** via **SparkSQL**, ce qui permet d’avoir un **workflow prêt pour la production**, facilement intégrable à des outils BI ou dashboards. 
 
-
-### 6. Étapes de mise en place
+## Étapes de mise en place
 
 ....
 
