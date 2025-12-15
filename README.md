@@ -34,22 +34,20 @@ Le fichier final est stocké sous le format : **`traffic_volume_cleaned_encoded.
 
 ### 4. Dataset utilisé – Metro Interstate Traffic Volume 
 
-Le dataset *Metro Interstate Traffic Volume* contient des données de trafic routier urbain, incluant le volume de circulation, les conditions météorologiques et des informations temporelles. Il est utilisé pour analyser et détecter les patterns de congestion du trafic urbain.
+ Le dataset *Metro Interstate Traffic Volume* regroupe des données de trafic routier urbain, incluant le volume de circulation, les conditions météorologiques et des informations temporelles. Il est exploité pour analyser le trafic et identifier les **patterns de congestion urbaine**. 
 
-#### * Structure des données :
+##### Structure des données
 
-Les données de ce jeu de données ont été collectées par le **Minnesota Department of Transportation (MnDOT)** entre **2012 et 2018**. Les attributs clés du jeu de données sont :
+Les données ont été collectées par le **Minnesota Department of Transportation (MnDOT)** sur la période **2012–2018**. Les principales caractéristiques du jeu de données sont :
 
-- **holiday** : variable catégorielle indiquant les jours fériés nationaux ou régionaux.
-- **temp** : température moyenne (en kelvin).
-- **rain_1h** : quantité de pluie (en mm) sur une heure.
-- **snow_1h** : quantité de neige (en mm) sur une heure.
+- **holiday** : variable catégorielle indiquant la présence de jours fériés nationaux ou régionaux.
+- **temp** : température moyenne exprimée en kelvin.
+- **rain_1h** : quantité de pluie (en millimètres) enregistrée sur une heure.
+- **snow_1h** : quantité de neige (en millimètres) enregistrée sur une heure.
 - **clouds_all** : pourcentage de couverture nuageuse.
-- **weather_main** : description courte des conditions météorologiques.
+- **weather_main** : description succincte des conditions météorologiques.
 - **weather_description** : description détaillée des conditions météorologiques.
 - **date_time** : date et heure de la mesure (heure locale CST).
 - **traffic_volume** : volume horaire du trafic routier.
-
-
 
 
