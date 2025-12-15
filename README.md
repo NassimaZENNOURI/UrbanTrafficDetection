@@ -15,7 +15,7 @@ L’ensemble des outils nécessaires au pipeline Big Data ont été installé et
 Les composants utilisés sont :
 
 - **Apache Spark** : moteur de calcul distribué pour le traitement des données massives.
-- **PySpark** : interface Python pour l’utilisation de Spark MLlib.
+- **PySpark** : interface Python pour l’utilisation de Spark ML.
 - **Apache Zeppelin** : notebook interactif pour l’exécution et la visualisation des traitements Spark.
 - **HDFS (Hadoop Distributed File System)** : système de fichiers distribué pour le stockage et l’accès aux données.
 - **Apache Hive** : data warehouse permettant le stockage des résultats et l’exécution de requêtes SQL sur les données distribuées.
@@ -51,13 +51,56 @@ Les données ont été collectées par le **Minnesota Department of Transportati
 - **traffic_volume** : volume horaire du trafic routier.
 
 ### 5. Construire le pipeline complet
+#### 5.1 Analyse exploratoire (EDA)
 
-#### **5.1 Importer les données dans Spark depuis HDFS**
+* Comprendre les colonnes disponibles.
+* Identifier les valeurs manquantes.
+* Vérifier les types de données (catégoriel, numérique).
+* Détecter les outliers.
+* Visualisation rapide via **Zeppelin** (tableaux, histogrammes).
 
-* Lecture des données avec :
 
-```
-spark.read.parquet("traffic_volume_cleaned_encoded.parquet")
-```
+#### 5.2 Prétraitement des données
 
-* **Avantage** : Spark lit directement les fichiers distribués sur HDFS, permettant un **traitement parallèle efficace**.
+- **Nettoyage** : suppression ou interpolation des valeurs manquantes.
+- **Transformation des variables** :
+
+  * Encodage des variables catégorielles (ex. `weather_description` → entier).
+  * Normalisation ou standardisation si nécessaire.
+- **Création de nouvelles features** :
+
+  * Features temporelles cycliques : `hour_sin`, `hour_cos` pour capturer le cycle 24h.
+  * Features de pointe : `is_peak_hour`, `hour_peak`, `temp_peak`.
+  * Features non linéaires : `Hour_sq`, `temp_sq`, `rain_sq`.
+
+
+#### 5.3 Entraîner plusieurs modèles de Machine Learning
+
+- Les modèles distribués suivants sont entraînés sur le dataset à l’aide de **Spark ML** pour un traitement rapide sur de grands volumes de données :
+
+  * **Decision Tree Regressor**
+  * **Random Forest Regressor**
+  * **Gradient-Boosted Tree (GBT) Regressor**
+
+
+#### 5.4 Comparer les modèles
+
+- Évaluation sur le jeu de test :
+
+  * **R²** – proportion de variance expliquée
+  * **RMSE** – racine de l’erreur quadratique moyenne
+  * **MAE** – erreur absolue moyenne
+- Comparaison des performances pour sélectionner le modèle le plus performant.
+
+
+#### 5.5 Visualiser les résultats
+
+* Avec **Zeppelin** :
+
+  * Graphiques prédictions vs valeurs réelles
+  * Histogrammes des erreurs
+  * Courbes de performance
+
+#### 5.6 Stocker les résultats dans Hive
+
+Les performances et les prédictions sont sauvegardées dans **Hive** via **SparkSQL**, ce qui permet d’avoir un **workflow prêt pour la production**, facilement intégrable à des outils BI ou dashboards. 
