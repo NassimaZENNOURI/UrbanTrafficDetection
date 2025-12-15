@@ -50,4 +50,14 @@ Les données ont été collectées par le **Minnesota Department of Transportati
 - **date_time** : date et heure de la mesure (heure locale CST).
 - **traffic_volume** : volume horaire du trafic routier.
 
+### 5. Construire le pipeline complet
 
+#### **5.1 Importer les données dans Spark depuis HDFS**
+
+* Lecture des données avec :
+
+```
+spark.read.parquet("traffic_volume_cleaned_encoded.parquet")
+```
+
+* **Avantage** : Spark lit directement les fichiers distribués sur HDFS, permettant un **traitement parallèle efficace**.
