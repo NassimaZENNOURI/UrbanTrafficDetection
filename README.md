@@ -105,7 +105,51 @@ Les données ont été collectées par le **Minnesota Department of Transportati
 
 Les performances et les prédictions sont sauvegardées dans **Hive** via **SparkSQL**, ce qui permet d’avoir un **workflow prêt pour la production**, facilement intégrable à des outils BI ou dashboards. 
 
+
+
 ## Étapes de mise en place
 
-....
+### 1. Lancer l’environnement Docker
+
+Construire et démarrer les services nécessaires à l’aide de Docker Compose :
+
+```bash
+docker compose build zeppelin
+docker-compose up -d
+```
+
+Cette étape permet de lancer l’ensemble des services Big Data requis : **Hadoop, Hive, Spark et Zeppelin**.
+
+
+### 2. Accéder au conteneur Zeppelin
+
+Entrer dans le conteneur Zeppelin pour effectuer les configurations nécessaires :
+
+```bash
+docker exec -it zeppelin bash
+```
+
+
+### 3. Supprimer les fichiers temporaires
+
+Nettoyer les fichiers temporaires générés automatiquement (`._*`) :
+
+```bash
+find /opt/zeppelin -name "._*" -delete
+```
+
+### 4. Redémarrer le service Zeppelin
+
+Quitter le conteneur :
+
+```bash
+exit
+```
+
+Puis redémarrer le service Zeppelin :
+
+```bash
+docker restart zeppelin
+```
+
 
