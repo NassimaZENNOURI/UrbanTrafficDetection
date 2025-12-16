@@ -153,3 +153,53 @@ docker restart zeppelin
 ```
 
 
+### 5. Créer le warehouse Hive dans HDFS
+
+Accéder au conteneur **NameNode** :
+
+```bash
+docker exec -it namenode bash
+```
+
+Créer le répertoire Hive dans HDFS et attribuer les droits nécessaires :
+
+```bash
+hdfs dfs -mkdir -p /user/hive/warehouse
+hdfs dfs -chmod -R 777 /user/hive
+```
+
+Cette étape est indispensable pour permettre à **Hive** de créer, stocker et gérer ses tables dans HDFS.
+
+
+### 6. Copier le dataset vers HDFS
+
+Créer le dossier des données brutes dans HDFS :
+
+```bash
+hdfs dfs -mkdir -p /data/raw
+```
+
+Copier le fichier CSV vers HDFS :
+
+```bash
+hdfs dfs -put /data/raw/Metro_Interstate_Traffic_Volume.csv /data/raw/
+```
+
+Les données sont désormais disponibles dans **HDFS** pour être exploitées par **Spark** et **Hive**.
+
+
+### 7. Utilisation de Zeppelin
+
+* Ouvrir un navigateur et accéder à :
+  **[http://localhost:8090/](http://localhost:8090/)**
+* Aller dans **Import Note**
+* Glisser-déposer le fichier **`.ipynb`**
+* Exécuter le notebook
+* Visualiser les résultats :
+
+  * traitement des données
+  * analyses exploratoires
+  * entraînement des modèles
+  * visualisations et métriques
+
+
